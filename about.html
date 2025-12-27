@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Somagom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Public+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --heritage-red: #A33B26;
+            --clay-white: #F9F7F2;
+            --ink-black: #2A2420;
+            --muted-gold: #C5A059;
+        }
+        body { 
+            font-family: 'Public Sans', sans-serif; 
+            background-color: var(--clay-white); 
+            color: var(--ink-black); 
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .serif { font-family: 'Marcellus', serif; }
+        .brand-color { color: var(--heritage-red); }
+        .brand-bg { background-color: var(--heritage-red); }
+
+        .logo-box {
+            border: 2px solid var(--heritage-red);
+            padding: 4px 12px;
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* Improved Section Colors */
+        .heritage-cream-bg { background-color: #F2EBE1; }
+        .border-brand { border-color: rgba(163, 59, 38, 0.2); }
+
+        .story-image {
+            filter: sepia(15%);
+            box-shadow: 20px 20px 0px rgba(163, 59, 38, 0.05);
+        }
+
+        .philosophy-card {
+            background: white;
+            border: 1px solid rgba(163, 59, 38, 0.1);
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--heritage-red);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="flex justify-between items-center px-10 py-6 sticky top-0 z-50 bg-[#F9F7F2]/90 backdrop-blur-md border-b border-stone-200">
+        <a href="index.html" class="logo-box brand-color">
+            <div class="text-xl serif tracking-tighter uppercase">SOMAGOM</div>
+        </a>
+        <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-widest font-bold text-stone-500">
+            <a href="index.html" class="hover:brand-color transition">Home</a>
+            <a href="fashion.html" class="hover:brand-color transition">Fashion</a>
+            <a href="food.html" class="hover:brand-color transition">GI Food</a>
+            <a href="craft.html" class="hover:brand-color transition">Crafts</a>
+        </div>
+        <div class="text-[11px] uppercase tracking-widest font-bold brand-color">Our Story</div>
+    </nav>
+
+    <section class="px-10 py-24 text-center max-w-5xl mx-auto">
+        <span class="brand-color text-[10px] uppercase tracking-[0.5em] mb-4 block font-bold">Heritage Preservation Network</span>
+        <h1 class="text-5xl md:text-8xl serif mb-10 leading-tight">Authenticity is our <span class="italic font-light">Ancestry.</span></h1>
+        <div class="w-20 h-1 brand-bg mx-auto mb-10"></div>
+        <p class="text-xl text-stone-600 leading-relaxed font-light max-w-3xl mx-auto">
+            Somagom isn't just a marketplace; it is a movement. We exist to protect the <span class="brand-color font-semibold">Geographical Indication (GI)</span> status of Bangladesh's most iconic treasures—from the mist-soaked looms of Sonargaon to the clay-rich kitchens of Bogura.
+        </p>
+    </section>
+
+    <section class="px-10 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center border-t border-stone-200">
+        <div>
+            <h2 class="text-4xl serif mb-8">Beyond the Label</h2>
+            <div class="space-y-6 text-stone-600 text-sm leading-loose">
+                <p>
+                    Every product on this platform carries a story that spans centuries. When you hold a **Dhakai Jamdani**, you aren't just holding fabric; you are holding a weaving tradition that survived the colonial era and the test of time. 
+                </p>
+                <p>
+                    We realized that in the modern market, "Handmade" had become a marketing buzzword. True artisans were being overshadowed by mass-produced copies that lacked the soul and the specific regional quality of the original. **Somagom was founded in 2024** to solve this—to create a digital sanctuary where the provenance of every item is verified and the lineage of every weaver is respected.
+                </p>
+                <p>
+                    Our team travels to the remote corners of Bangladesh—the Hilsa hubs of Chandpur, the silk villages of Rajshahi, and the pottery wheels of Dhamrai—to ensure that what reaches you is 100% authentic and ethically sourced.
+                </p>
+            </div>
+        </div>
+        <div class="relative">
+            <img src="https://images.unsplash.com/photo-1610116303244-6239f8134530?auto=format&fit=crop&q=80&w=800" alt="Weaving" class="story-image w-full h-[600px] object-cover">
+            <div class="absolute -bottom-6 -left-6 bg-white p-8 border-l-4 brand-color shadow-lg max-w-xs">
+                <p class="serif italic text-lg">"We weave not just with thread, but with the memories of our fathers."</p>
+                <p class="text-[10px] uppercase tracking-widest mt-4 font-bold text-stone-400">— Master Weaver, Tangail</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-cream-bg py-24 px-10 border-y border-stone-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif text-4xl mb-4">The GI Philosophy</h2>
+                <p class="text-stone-500 text-xs uppercase tracking-widest font-bold">Why local origins define global quality</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="philosophy-card">
+                    <div class="w-12 h-12 flex items-center justify-center brand-bg text-white mb-6">
+                        <span class="serif text-2xl">01</span>
+                    </div>
+                    <h3 class="serif text-2xl mb-4 brand-color">The Soil</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed">
+                        A Geographical Indication is tied to the earth. The mineral-rich silt of the Padma gives the Ilish its fat; the humid air of Narayanganj allows the Jamdani thread to stay supple. Without the soil, there is no soul.
+                    </p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="w-12 h-12 flex items-center justify-center brand-bg text-white mb-6">
+                        <span class="serif text-2xl">02</span>
+                    </div>
+                    <h3 class="serif text-2xl mb-4 brand-color">The Skill</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed">
+                        Inherited mastery cannot be replicated by machines. Our artisans possess "muscle memory" passed down through seven generations, ensuring motifs and flavors that automated factories can never mimic.
+                    </p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="w-12 h-12 flex items-center justify-center brand-bg text-white mb-6">
+                        <span class="serif text-2xl">03</span>
+                    </div>
+                    <h3 class="serif text-2xl mb-4 brand-color">The Shield</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed">
+                        Your purchase acts as a protective shield. By choosing certified GI products, you prevent legal copyright theft of our national culture and ensure that artisan communities thrive economically for years to come.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-10 py-24 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="serif text-4xl mb-12">How We Verify</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="flex gap-6">
+                    <div class="brand-color text-2xl serif">01</div>
+                    <div>
+                        <h4 class="font-bold text-[11px] uppercase tracking-widest mb-2">On-Ground Inspection</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">We personally visit the production units to ensure they are within the GI-defined geographical boundary.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="brand-color text-2xl serif">02</div>
+                    <div>
+                        <h4 class="font-bold text-[11px] uppercase tracking-widest mb-2">Purity Certification</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">Every batch of food is tested for harmful additives, and textiles are checked for authentic yarn counts.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="brand-color text-2xl serif">03</div>
+                    <div>
+                        <h4 class="font-bold text-[11px] uppercase tracking-widest mb-2">Traceable Supply Chain</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">We use direct logistics to remove middlemen, ensuring the artisan receives the maximum profit share.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="brand-color text-2xl serif">04</div>
+                    <div>
+                        <h4 class="font-bold text-[11px] uppercase tracking-widest mb-2">UNESCO Alignment</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">We prioritize items recognized as Intangible Cultural Heritage, preserving them for future generations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-stone-200 text-center heritage-cream-bg">
+        <div class="logo-box brand-color mb-6">
+            <div class="text-lg serif tracking-tighter uppercase">SOMAGOM</div>
+        </div>
+        <p class="text-[10px] uppercase tracking-widest text-stone-500 mb-8 max-w-sm mx-auto">
+            Supporting over 500+ Artisan Families across 64 Districts of Bangladesh.
+        </p>
+        <div class="text-[9px] uppercase tracking-[0.5em] text-stone-400">© 2025 Somagom — Authentic Heritage Network</div>
+    </footer>
+
+</body>
+</html>
