@@ -29,27 +29,26 @@
             font-weight: 700;
             letter-spacing: 2px;
         }
-        .glass-card {
-            background: rgba(249, 247, 242, 0.85);
-            border: 1px solid rgba(163, 59, 38, 0.25);
-            backdrop-filter: blur(8px);
-        }
 
-        .hero-gradient {
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(249, 247, 242, 0.2),
-                    rgba(249, 247, 242, 0.95)
-                ),
-                url('https://images.unsplash.com/photo-1621235191993-4a7b74f3952a?q=80&w=2000&auto=format&fit=crop');
+        .hero-section {
+            height: 85vh;
+            background: linear-gradient(rgba(42, 36, 32, 0.7), rgba(42, 36, 32, 0.5)), 
+                        url('Images/artistic_hand.jpg'); 
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
         }
 
-        nav {
-            background-color: rgba(249, 247, 242, 0.95) !important;
-            border-bottom: 1px solid rgba(163, 59, 38, 0.25);
+        #mobile-menu {
+            display: none;
+            transition: all 0.3s ease;
+        }
+        #mobile-menu.active {
+            display: flex;
         }
 
         .traditional-card {
@@ -60,30 +59,32 @@
         .traditional-card:hover {
             border-color: var(--heritage-red);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(163, 59, 38, 0.05);
         }
-
-        /* FIXES FOR FOOTER */
-        .bg-primary-blue {
-            background-color: var(--ink-black);
-        }
-
-        .text-accent-gold,
-        .hover\:text-accent-gold:hover {
-            color: var(--heritage-red);
-        }
-
-        .border-accent-gold\/50 {
-            border-color: rgba(163, 59, 38, 0.5);
+        .glass-card {
+            background: rgba(249, 247, 242, 0.85);
+            border: 1px solid rgba(163, 59, 38, 0.25);
+            backdrop-filter: blur(8px);
         }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-10 py-6 sticky top-0 z-50 bg-[#F9F7F2]/90 backdrop-blur-md border-b border-stone-200">
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#F9F7F2] p-10 flex flex-col space-y-8 text-2xl serif">
+        <button id="close-menu" class="absolute top-8 right-10 text-stone-500 text-4xl">✕</button>
+        <a href="index.html" class="brand-color">Home</a>
+        <a href="fashion.html">Fashion</a>
+        <a href="food.html">GI Food</a>
+        <a href="craft.html">Crafts</a>
+        <a href="about.html">Our Story</a>
+        <hr class="border-stone-200">
+        <a href="login.html" class="text-sm uppercase tracking-widest font-bold">Login / Account</a>
+    </div>
+
+    <nav class="flex justify-between items-center px-6 md:px-10 py-6 sticky top-0 z-50 bg-[#F9F7F2]/95 backdrop-blur-md border-b border-stone-200">
         <div class="logo-box brand-color">
             <div class="text-xl serif tracking-tighter">SOMAGOM</div>
         </div>
+        
         <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-widest font-bold text-stone-500">
             <a href="#" class="brand-color">Home</a>
             <a href="fashion.html" class="hover:brand-color transition">Fashion</a>
@@ -91,21 +92,31 @@
             <a href="craft.html" class="hover:brand-color transition">Crafts</a>
             <a href="about.html" class="hover:brand-color transition">Our Story</a>
         </div>
-        <a href="login.html" class="brand-bg px-6 py-2 text-xs uppercase font-bold text-white hover:opacity-90 transition inline-block">Login</a>
+
+        <div class="flex items-center space-x-4">
+            <a href="login.html" class="hidden md:block brand-bg px-6 py-2 text-xs uppercase font-bold text-white hover:opacity-90 transition">Login</a>
+            <button id="open-menu" class="md:hidden text-stone-800 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
     </nav>
 
-    <section class="h-[80vh] flex flex-col justify-center items-center text-center px-6">
-        <h1 class="text-6xl md:text-8xl serif leading-tight mb-4">HERITAGE <br> <span class="italic font-light opacity-80 brand-color">& FREEDOM</span></h1>
-        <p class="max-w-xl text-stone-600 text-sm md:text-base mb-8 uppercase tracking-[0.2em]">
-            ঐতিহ্য এখন আপনার ঘরের দুয়ারে <br>
-            Directly connecting Bangladeshi artisans with the world.
-        </p>
-        <div class="flex flex-col items-center">
-            <a href="#about" class="text-xs uppercase tracking-widest border-b border-stone-800 pb-2 hover:brand-color hover:border-brand-color transition">Explore Collection</a>
+    <section class="hero-section px-6">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-8xl serif leading-tight mb-6">HERITAGE <br> <span class="italic font-light opacity-90 text-[#C5A059]">AND TRADITION</span></h1>
+            <p class="max-w-xl mx-auto text-stone-200 text-sm md:text-base mb-10 uppercase tracking-[0.2em] leading-relaxed">
+                ঐতিহ্য এখন আপনার ঘরের দুয়ারে <br>
+                Empowering the roots of Bangladesh through authentic commerce.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="fashion.html" class="brand-bg text-white px-10 py-4 text-xs uppercase font-bold tracking-widest hover:opacity-90 transition shadow-xl">Explore Collection</a>
+                <a href="about.html" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 text-xs uppercase font-bold tracking-widest hover:bg-white hover:text-black transition">Our Legacy</a>
+            </div>
         </div>
     </section>
 
-    <!-- FEATURES -->
     <section class="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 py-20">
         <div class="glass-card p-8 group hover:border-[var(--heritage-red)] transition duration-500">
             <h3 class="text-xs tracking-widest text-gray-600 mb-4 uppercase">Authenticity</h3>
@@ -145,6 +156,29 @@
             <span class="text-[10px] uppercase tracking-widest group-hover:text-[var(--heritage-red)]">
                 Shipping Info ↗
             </span>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-stone-200 bg-white">
+        <div class="p-10 border-r border-stone-100 flex flex-col items-center text-center">
+            <div class="w-10 h-10 brand-color mb-4"><i data-lucide="shield-check"></i></div>
+            <h3 class="serif text-lg mb-2">GI Verified</h3>
+            <p class="text-[10px] text-stone-500 uppercase tracking-wider">Certified Authenticity</p>
+        </div>
+        <div class="p-10 border-r border-stone-100 flex flex-col items-center text-center">
+            <div class="w-10 h-10 brand-color mb-4"><i data-lucide="map-pin"></i></div>
+            <h3 class="serif text-lg mb-2">Direct Source</h3>
+            <p class="text-[10px] text-stone-500 uppercase tracking-wider">Village to Doorstep</p>
+        </div>
+        <div class="p-10 border-r border-stone-100 flex flex-col items-center text-center">
+            <div class="w-10 h-10 brand-color mb-4"><i data-lucide="truck"></i></div>
+            <h3 class="serif text-lg mb-2">Fast Shipping</h3>
+            <p class="text-[10px] text-stone-500 uppercase tracking-wider">Global Logistics</p>
+        </div>
+        <div class="p-10 flex flex-col items-center text-center">
+            <div class="w-10 h-10 brand-color mb-4"><i data-lucide="users"></i></div>
+            <h3 class="serif text-lg mb-2">Artisan First</h3>
+            <p class="text-[10px] text-stone-500 uppercase tracking-wider">Supporting 100+ Families</p>
         </div>
     </section>
 
@@ -192,11 +226,11 @@
             </div>
             <div class="traditional-card group">
                 <div class="h-48 overflow-hidden">
-                    <img src="Images/Bograr_dahi.jpg" alt="Bogura Doi" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <img src="Images/Patishapta.png" alt="Patisapta Pitha" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
                 <div class="p-6 text-center">
-                    <h3 class="serif text-xl">Bogura Doi</h3>
-                    <p class="text-sm text-stone-600 mt-2 italic">Traditional creamy fermented yogurt</p>
+                    <h3 class="serif text-xl">Patisapta Pitha</h3>
+                    <p class="text-sm text-stone-600 mt-2 italic">Thin rice-flour crepes rolled with luscious Kheer filling.</p>
                 </div>
             </div>
         </div>
@@ -213,7 +247,7 @@
                 </div>
             </div>
             <div class="traditional-card flex flex-col md:flex-row items-center">
-                <img src="Images/nakshi_katha_jamalpur.jpg" class="w-full md:w-48 h-48 object-cover">
+                <img src="Images/nakshi_katha.jpg" class="w-full md:w-48 h-48 object-cover">
                 <div class="p-6">
                     <h3 class="serif text-2xl">Nakshi Kantha</h3>
                     <p class="text-sm text-stone-600 mt-2">Intricate hand-stitched embroidery depicting the folklore of rural Bengal.</p>
@@ -222,7 +256,7 @@
         </div>
     </section>
 
-    <!-- STATS -->
+    
     <section class="flex flex-wrap justify-between px-10 py-16 border-y border-[rgba(163,59,38,0.25)]">
         <div class="w-1/2 md:w-1/4 mb-8 md:mb-0">
             <p class="text-gray-600 text-xs uppercase tracking-widest mb-1">Producers</p>
@@ -245,8 +279,10 @@
         </div>
     </section>
 
+    
 
-    <!-- ABOUT -->
+
+    
     <section id="about" class="grid grid-cols-1 md:grid-cols-2 gap-0 py-20 px-10">
         <div class="glass-card p-12 flex flex-col justify-center">
             <h4 class="brand-color text-xs uppercase tracking-widest mb-6">About Somagom</h4>
@@ -304,10 +340,23 @@
         </div>
     </footer>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+        
+        const openBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const menu = document.getElementById('mobile-menu');
 
+        openBtn.addEventListener('click', () => {
+            menu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            menu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    </script>
 </body>
 </html>
