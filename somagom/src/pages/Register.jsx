@@ -1,0 +1,223 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+// Assets
+import logo from '../assets/logo.png';
+import mapBg from '../assets/map.png';
+
+export default function Register() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Form State
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  // Handle Input Changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Integration Logic for Django REST Auth
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Frontend validation
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    // CTO Logic: Split the full name to match Bayazid's first_name and last_name fields
+    const nameParts = formData.fullName.trim().split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
+    try {
+      // Sending data to Django backend
+      const response = await axios.post('http://localhost:8000/dj-rest-auth/registration/', {
+        username: formData.email, // Django still needs a 'username' key; we use email to keep it unique
+        email: formData.email,
+        password: formData.password,
+        first_name: firstName,    // Added to match Bayazid's model
+        last_name: lastName,      // Added to match Bayazid's model
+      });
+
+      if (response.status === 201 || response.status === 200) {
+        alert("Registration Successful!");
+        navigate('/login');
+      }
+    } catch (err) {
+      const serverError = err.response?.data;
+      if (serverError) {
+        // Formats Django's error objects (which are often arrays) into a string
+        const errorMsg = Object.entries(serverError)
+          .map(([key, val]) => `${key}: ${val}`)
+          .join(' ');
+        setError(errorMsg);
+      } else {
+        setError("Network error. Ensure the backend is running on port 8000.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSocialAuth = (platform) => {
+    console.log(`Redirecting to ${platform} OAuth...`);
+  };
+
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-[#fcf8f7] relative px-5 py-10">
+      {/* Background Map Overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-[0.15] z-0"
+        style={{ 
+          backgroundImage: `url(${mapBg})`, 
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center' 
+        }}
+      ></div>
+
+      <div className="bg-white w-full max-w-[500px] p-8 md:p-10 rounded-[24px] shadow-lg border border-[#A33B26]/10 z-10">
+        {/* Brand Logo */}
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <img src={logo} alt="Logo" className="w-[45px] h-auto" />
+          <h1 className="font-['Great_Vibes'] text-[#A33B26] text-4xl leading-none">Somagom</h1>
+        </div>
+
+        <h2 className="font-['Great_Vibes'] text-3xl text-[#333] text-center mb-1">Join Us</h2>
+        <p className="text-center text-[#888] text-[11px] tracking-widest uppercase mb-8">Create your account</p>
+
+        {/* Error Display */}
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-xs font-semibold">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          {/* Full Name */}
+          <div className="relative mb-6">
+            <label className="absolute -top-[9px] left-[15px] bg-white px-2 text-[11px] font-semibold text-[#A33B26] uppercase tracking-wider z-10">
+              Full Name
+            </label>
+            <span className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#A33B26]">
+              <i className="fa-regular fa-user"></i>
+            </span>
+            <input 
+              type="text" 
+              name="fullName"
+              placeholder="Your full name"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="w-full py-4 pl-12 pr-4 border border-[#e0c8c4] rounded-xl outline-none focus:border-[#A33B26] transition-all"
+              required 
+            />
+          </div>
+
+          {/* Email Address */}
+          <div className="relative mb-6">
+            <label className="absolute -top-[9px] left-[15px] bg-white px-2 text-[11px] font-semibold text-[#A33B26] uppercase tracking-wider z-10">
+              Email Address
+            </label>
+            <span className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#A33B26]">
+              <i className="fa-regular fa-envelope"></i>
+            </span>
+            <input 
+              type="email" 
+              name="email"
+              placeholder="email@example.com"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full py-4 pl-12 pr-4 border border-[#e0c8c4] rounded-xl outline-none focus:border-[#A33B26] transition-all"
+              required 
+            />
+          </div>
+
+          {/* Password */}
+          <div className="relative mb-6">
+            <label className="absolute -top-[9px] left-[15px] bg-white px-2 text-[11px] font-semibold text-[#A33B26] uppercase tracking-wider z-10">
+              Password
+            </label>
+            <span className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#A33B26]">
+              <i className="fa-solid fa-lock"></i>
+            </span>
+            <input 
+              type="password" 
+              name="password"
+              placeholder="••••••••••••"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full py-4 pl-12 pr-4 border border-[#e0c8c4] rounded-xl outline-none focus:border-[#A33B26] transition-all"
+              required 
+            />
+          </div>
+
+          {/* Confirm Password */}
+          <div className="relative mb-6">
+            <label className="absolute -top-[9px] left-[15px] bg-white px-2 text-[11px] font-semibold text-[#A33B26] uppercase tracking-wider z-10">
+              Confirm Password
+            </label>
+            <span className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#A33B26]">
+              <i className="fa-solid fa-shield-halved"></i>
+            </span>
+            <input 
+              type="password" 
+              name="confirmPassword"
+              placeholder="••••••••••••"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="w-full py-4 pl-12 pr-4 border border-[#e0c8c4] rounded-xl outline-none focus:border-[#A33B26] transition-all"
+              required 
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={loading}
+            className={`w-full py-4 bg-[#A33B26] text-white rounded-xl font-bold tracking-widest transition-all active:scale-95 mb-6 ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#802e1e]'}`}
+          >
+            {loading ? 'CREATING ACCOUNT...' : 'CREATE ACCOUNT'}
+          </button>
+        </form>
+
+        <div className="relative flex items-center mb-6">
+          <div className="flex-grow border-t border-stone-200"></div>
+          <span className="flex-shrink mx-4 text-stone-400 text-[10px] font-bold uppercase tracking-widest">
+            Or continue with
+          </span>
+          <div className="flex-grow border-t border-stone-200"></div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <button 
+            onClick={() => handleSocialAuth('google')}
+            className="flex items-center justify-center gap-2 py-3 border border-[#e0c8c4] rounded-xl hover:bg-stone-50 transition-all active:scale-95 text-sm font-semibold text-stone-700"
+          >
+            <i className="fa-brands fa-google text-red-500"></i> Google
+          </button>
+          <button 
+            onClick={() => handleSocialAuth('facebook')}
+            className="flex items-center justify-center gap-2 py-3 border border-[#e0c8c4] rounded-xl hover:bg-stone-50 transition-all active:scale-95 text-sm font-semibold text-stone-700"
+          >
+            <i className="fa-brands fa-facebook text-blue-600"></i> Facebook
+          </button>
+        </div>
+
+        <p className="text-center text-sm text-stone-500 mt-2">
+          Already have an account? <Link to="/login" className="text-[#A33B26] font-bold">Login Now</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
